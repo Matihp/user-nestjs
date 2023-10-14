@@ -29,7 +29,7 @@ export class UsersService {
       }
       return users
     } catch (error) {
-      throw new ErrorManager.createSignatureError(error.message)
+      throw ErrorManager.createSignatureError(error.message)
     }
   }
   public async findById(id:string):Promise<UsersEntity>{
@@ -43,7 +43,7 @@ export class UsersService {
       }
       return user
     } catch (error) {
-      throw new ErrorManager.createSignatureError(error.message)
+      throw ErrorManager.createSignatureError(error.message)
     }
   }
   public async updateUser(body:UserUpdateDTO,id:string):Promise<UpdateResult | undefined>{
@@ -57,7 +57,7 @@ export class UsersService {
       }
       return user
     } catch (error) {
-      throw new ErrorManager.createSignatureError(error.message)
+      throw ErrorManager.createSignatureError(error.message)
     }
   }
   public async deleteUser(id:string):Promise<DeleteResult | undefined>{
@@ -71,7 +71,7 @@ export class UsersService {
       }
       return user
     } catch (error) {
-      throw new ErrorManager.createSignatureError(error.message)
+      throw ErrorManager.createSignatureError(error.message)
     }
   }
 }
