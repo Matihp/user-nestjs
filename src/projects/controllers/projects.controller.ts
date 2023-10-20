@@ -1,7 +1,8 @@
-import { Body, Delete, Get, Param, ParseUUIDPipe, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put } from "@nestjs/common";
 import { ProjectDTO, ProjectUpdateDTO } from "../dtos/projects.dto";
 import { ProjectsService } from "../services/projects.service";
 
+@Controller('app')
 export class ProjectsController {
     constructor(private readonly projectService: ProjectsService) {}
     @Post('create')

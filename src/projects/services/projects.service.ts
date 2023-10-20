@@ -21,7 +21,6 @@ export class ProjectsService {
 
   public async findProjects(): Promise<ProjectsEntity[]> {
     try {
-      return await this.projectRepository.find();
       const projects: ProjectsEntity[] = await this.projectRepository.find();
       if (projects.length === 0) {
         throw new ErrorManager({
@@ -40,6 +39,8 @@ export class ProjectsService {
       const project = await this.projectRepository
         .createQueryBuilder('project')
         .where({ id })
+        .leftJoinAndSelect('project.usersIncludes','usersIncludes')
+        .leftJoinAndSelect('usersIncludes.user','user')
         .getOne();
       if (!project) {
         throw new ErrorManager({
@@ -52,6 +53,7 @@ export class ProjectsService {
       throw ErrorManager.createSignatureError(error.message);
     }
   }
+
 
   public async updateProject(
     body: ProjectUpdateDTO,
@@ -78,7 +80,6 @@ export class ProjectsService {
     try {
       const project: DeleteResult = await this.projectRepository.delete(id);
       if (project.affected === 0) {
-        return undefined;
         throw new ErrorManager({
           type: 'BAD_REQUEST',
           message: 'No se pudo borrar proyecto',
