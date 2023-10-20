@@ -5,6 +5,7 @@ import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { UserDTO, UserToProjectDTO, UserUpdateDTO } from '../dto/user.dto';
 import { ErrorManager } from 'src/utils/error.manager';
 import { UsersProjectsEntity } from '../entities/usersProjects.entity';
+import * as bcrypt from 'bcrypt'
 
 @Injectable()
 export class UsersService {
@@ -13,9 +14,12 @@ export class UsersService {
     private readonly userRepository:Repository<UsersEntity>,
     @InjectRepository(UsersProjectsEntity) 
     private readonly userProjectRepository:Repository<UsersProjectsEntity>,
-    ){}
+    ){
+      //process.env.
+    }
   public async createUser(body:UserDTO):Promise<UsersEntity>{
     try {
+      body.password = await bcrypt.hash(body.password,+process.env.HASH_SALT)
       return await this.userRepository.save(body)
     } catch (error) {
       throw new Error(error)
