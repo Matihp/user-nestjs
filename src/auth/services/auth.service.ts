@@ -37,5 +37,12 @@ export class AuthService {
     public async generateJwt(user:UsersEntity):Promise<any>{
         const getUSer = await this.userService.findById(user.id)
         const payload:PayloadToken={role:getUSer.role,sub:getUSer.id}
+        return {
+            accessToken:this.signJWT({
+                payload,
+                secret: process.env.JWT_SECRET,
+                expires:'2h'
+            }),user
+        }
     }
 }
