@@ -8,3 +8,14 @@ export interface AuthBody{
     username:string
     password:string
 }
+export interface AuthTokenResult{
+       role:string
+       sub:string
+       iat:number
+       exp:number
+}
+export interface UseToken{
+    role:string
+    sub:string
+    isExpired:boolean
+}
