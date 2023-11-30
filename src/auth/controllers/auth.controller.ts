@@ -1,5 +1,4 @@
 import { Body, Controller, Post, UnauthorizedException } from '@nestjs/common';
-import { AuthBody } from '../interfaces/auth.interface';
 import { AuthService } from '../services/auth.service';
 import { AuthDto } from '../dto/auth.dto';
 

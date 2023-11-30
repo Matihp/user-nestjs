@@ -5,7 +5,6 @@ import { PublicAccess } from 'src/auth/decorators/public.decorator';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { RolesAccess } from 'src/auth/decorators/roles.decorator';
-import { AdminAccess } from 'src/auth/decorators/admin.decorator';
 
 @Controller('app')
 @UseGuards(AuthGuard,RolesGuard)
